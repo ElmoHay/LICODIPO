@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>JSF Spring Hibernate Tarea</title>
+	<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+</style>
+</h:head>
+<h:body>
+	<h1>Agregar Repuesto</h1>
+	<h:form>
+		<table>
+			<tr>
+				<td><label>Nombre</label></td>
+				<td><h:inputText id="nombre" value="#{repuesto.nombre}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Marca</label></td>
+				<td><h:inputText id="marca" value="#{repuesto.marca}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Cantidad</label></td>
+				<td><h:inputText id="cantidad" value="#{repuesto.cantidad}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton
+						action="#{repuestoService.addRepuesto(repuesto)}" value="Add Repuesto"></h:commandButton>
+				</td>
+			</tr>
+
+		</table>
+
+	</h:form>
+
+	<br />
+	<h3>Lista Repuestos</h3>
+
+	<c:if test="${!empty repuestoService.listRepuestos()}">
+		<table class="tg">
+			<tr>
+				<th width="80">Repuesto ID</th>
+				<th width="120">Nombre</th>
+				<th width="120">Marca</th>
+				<th width="120">Cantidad</th>
+			</tr>
+			<ui:repeat value="${repuestoService.listRepuestos()}" var="repuesto">
+				<tr>
+					<td>${repuesto.id}</td>
+					<td>${repuesto.nombre}</td>
+					<td>${repuesto.marca}</td>
+					<td>${repuesto.cantidad}</td>
+				</tr>
+			</ui:repeat>
+		</table>
+	</c:if>
+
+</h:body>
+</html>
